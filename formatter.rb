@@ -1,3 +1,4 @@
+# Defines data to be parsed.
 data = "// Fig. 1.2: fig01_02.cpp
 // A first program in C++
 #include <iostream>
@@ -9,12 +10,11 @@ int main()
   return 0;   // indicate that program ended successfully
 }"
 
-puts "Before Comment Removal"
-puts data
-
+# Defines Regular Expressions to be worked through.
 Comment = /\/\/.*[^\n]/
 Quote = /\"[^\"]+\"/
 
+# Replaces the regex in the data object with the holder and returns a array. 
 def pull(data, holder, regex)
   store = []
   while data =~ regex
@@ -24,19 +24,23 @@ def pull(data, holder, regex)
   store
 end
 
-comment = pull(data, "--::Comment::--", Comment)
-quote = pull(data, "--::Quote::--", Quote)
-
-puts
-puts "After Comment Removal"
-puts data
-
+# Replaces the holder in the data object with the array items in sequence.
 def place(data, holder, array)
   while array.length > 0
     data.sub!(holder, array[0])
     array.shift
   end
 end
+
+puts "Before Comment Removal"
+puts data
+
+comment = pull(data, "--::Comment::--", Comment)
+quote = pull(data, "--::Quote::--", Quote)
+
+puts
+puts "After Comment Removal"
+puts data
 
 place(data, "--::Comment::--", comment)
 place(data, "--::Quote::--", quote)
