@@ -16,11 +16,8 @@ Quote = /\"[^\"]+\"/
 
 # Replaces the regex in the data object with the holder and returns a array. 
 def pull(data, holder, regex)
-  store = []
-  while data =~ regex
-    store += ["#{$&}"]
-    data.sub!(regex, holder)
-  end
+  store = data.scan(regex)
+  data.gsub!(regex, holder)
   store
 end
 
@@ -54,12 +51,9 @@ class Source
   def initialize(file)
     @data = File.open("#{file}").read
   end
-  def pull(holder, regex)
-    store = []
-    while @data =~ regex
-      store += ["#{$&}"]
-      @data.sub!(regex, holder)
-    end
+  def pull(data, holder, regex)
+    store = data.scan(regex)
+    data.gsub!(regex, holder)
     store
   end
   def place(holder, array)
