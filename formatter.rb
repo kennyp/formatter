@@ -48,3 +48,24 @@ place(data, "--::Quote::--", quote)
 puts
 puts "After Comment Reinsert"
 puts data
+
+# The beginings of an object.
+class Source
+  def initialize(file)
+    @data = File.open("#{file}").read
+  end
+  def pull(holder, regex)
+    store = []
+    while @data =~ regex
+      store += ["#{$&}"]
+      @data.sub!(regex, holder)
+    end
+    store
+  end
+  def place(holder, array)
+    while array.length > 0
+      @data.sub!(holder, array[0])
+      array.shift
+    end
+  end
+end
