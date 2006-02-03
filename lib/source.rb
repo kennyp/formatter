@@ -6,15 +6,14 @@ module Format
     def initialize(file)
       @data = File.open("#{file}").read
     end
-    def pull_quotes_and_comments(comment_regex, quote_regex)
+    def pull_comments_and_quotes(comment_regex, quote_regex)
       @comments = self.pull_comment_quote(@@comment_str, comment_regex)
       @quotes   = self.pull_comment_quote(@@quote_str, quote_regex)
     end
-    def place_quotes_and_comments
+    def place_comments_and_quotes
       place_comment_quote(@@comment_str, @comments)
       place_comment_quote(@@quote_str, @quotes)
     end
-    private
     def pull_comment_quote(holder, regex)
       store = @data.scan(regex)
       @data.gsub!(regex, holder)
