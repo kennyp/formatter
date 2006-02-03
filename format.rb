@@ -28,8 +28,9 @@ def go_for_it(filename)
   puts f.data
 end
 
+filename = ""		# AMW: Initialize filename
 opts = OptionParser.new
-opts.on("-f", "--file") { |str| filename = str }
+opts.on("-f", "--file FILENAME") { |str| filename = str }
 opts.parse(ARGV) rescue show_help
 
 begin
