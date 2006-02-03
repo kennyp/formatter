@@ -47,19 +47,3 @@ puts "After Comment Reinsert"
 puts data
 
 # The beginings of an object.
-class Source
-  def initialize(file)
-    @data = File.open("#{file}").read
-  end
-  def pull(data, holder, regex)
-    store = data.scan(regex)
-    data.gsub!(regex, holder)
-    store
-  end
-  def place(holder, array)
-    while array.length > 0
-      @data.sub!(holder, array[0])
-      array.shift
-    end
-  end
-end
