@@ -1,4 +1,4 @@
-require 'lib/formatter'
+require 'formatter/formatter'
 
 describe Formatter, " when initialized" do
 	before(:each) do
