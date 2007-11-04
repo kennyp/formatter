@@ -1,3 +1,5 @@
+require 'formatter/tokenized_string'
+
 class Grammar
     def initialize(grammar)
         @grammar_file = grammar
@@ -18,7 +20,7 @@ class Grammar
         @tokenizer.size
     end
     
-    def tokenize(file)
-        TokenizedString.new(file)
+    def tokenize(string)
+    	TokenizedString.new(string)
     end
 end

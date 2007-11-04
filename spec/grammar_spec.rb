@@ -10,14 +10,14 @@ end
 describe Grammar, " when passed a string to tokenize" do
     before(:each) do
         @grammar = Grammar.new('spec/test.gram')
-        @file = <<-EOF
+        @string = <<-EOF
             (defun (square x)
                 (* x x))
         EOF
 	end
 	
     it "should return a tokenized string" do
-		@grammar.tokenize(@file).should_not equal({})
+		@grammar.tokenize(@string).should_not equal({})
     end
-end     
+end 
 
