@@ -1,0 +1,5 @@
+/\(/        :start_group
+/\)/        :end_group
+/'\w/       :literal
+/\((\w+)/   :function
+/\s+(\w+)/  :argument
