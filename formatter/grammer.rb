@@ -1,2 +1,3 @@
-class Grammer
+class Grammar
+    def initialize(grammar)
 end
