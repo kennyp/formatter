@@ -1,5 +1,16 @@
-/\(/        :start_group
-/\)/        :end_group
-/'\w/       :literal
-/\((\w+)/   :function
-/\s+(\w+)/  :argument
+# Quotes Group
+/"/             :start_double_quote     :is_in :double_quote :as_start :is_in_group :quote;
+/(?<=[^\\])"/   :end_double_quote       :is_in :double_quote :as_end;  :is_in_group :quote;
+/'/             :start_single_quote     :is_in :single_quote :as_start :is_in_group :quote;
+/(?<=[^\\])'/   :end_single_quote       :is_in :single_quote :as_end;  :is_in_group :quote;
+
+# Whitespace
+/\s+/           :white_space            :must_not :be_in_group :quote;
+
+# Block Tokens
+/{/             :start_block            :is_in :block :as_start :must_not :be_in_group :quote;
+/}/             :end_block              :is_in :block :as_end   :must_not :be_in_group :quote;
+
+# Group Tokens
+/(/             :start_group            :is_in :group :as_start :must_not :be_in_group :quote;
+/)/             :end_group              :is_in :group :as_end   :must_not :be_in_group :quote;
