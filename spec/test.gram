@@ -1,16 +1,29 @@
-# Quotes Group
-/"/             :start_double_quote     :is_in :double_quote :as_start :is_in_group :quote;
-/(?<=[^\\])"/   :end_double_quote       :is_in :double_quote :as_end;  :is_in_group :quote;
-/'/             :start_single_quote     :is_in :single_quote :as_start :is_in_group :quote;
-/(?<=[^\\])'/   :end_single_quote       :is_in :single_quote :as_end;  :is_in_group :quote;
-
-# Whitespace
-/\s+/           :white_space            :must_not :be_in_group :quote;
-
-# Block Tokens
-/{/             :start_block            :is_in :block :as_start :must_not :be_in_group :quote;
-/}/             :end_block              :is_in :block :as_end   :must_not :be_in_group :quote;
-
-# Group Tokens
-/(/             :start_group            :is_in :group :as_start :must_not :be_in_group :quote;
-/)/             :end_group              :is_in :group :as_end   :must_not :be_in_group :quote;
+---
+name: DoubleQuotes
+regex: [/"/, /(?<=[^\\])"/]
+rules:
+    - must_not be_in SingleQuotes
+---
+name: SingleQuotes
+regex: [/'/, /(?<=[^\\])'/]
+rules:
+    - must_not be_in DoubleQuotes
+---
+name: Whitespace
+regex: /\s+/
+rules:
+    - must_not be_in DoubleQuotes
+    - must_not be_in SingleQuotes
+---
+name: Block
+regex: [/{/, /}/]
+rules:
+    - must_not be_in DoubleQuotes
+    - must_not be_in SingleQuotes
+    - must_not be_in Group
+---
+name: Group
+regex: [/(/, /)/]
+rules:
+    - must_not be_in DoubleQuotes
+    - must_not be_in SingleQuotes

@@ -4,11 +4,16 @@ class Grammar
     def initialize(grammar)
         @grammar_file = grammar
         @tokenizer = {}
+		@rules = Array.new()
     end
     
     def valid?
         @valid ||= load_grammar
     end
+	
+	def has_rules?
+		@rules.length() > 0
+	end
     
     def load_grammar
         File.open(@grammar_file, 'r') do |f|

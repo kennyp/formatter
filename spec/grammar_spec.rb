@@ -1,10 +1,13 @@
 require 'formatter/grammar'
 
 describe Grammar, " when initialized" do
+	before(:each) do
+		@grammar = Grammar.new('spec/test.gram')
+	end
+	
     it "should have a valid grammar" do
-		grammar = Grammar.new('spec/test.gram')
-        grammar.should be_valid
-    end 
+        @grammar.should be_valid
+    end
 end
 
 describe Grammar, " when passed a string to tokenize" do
