@@ -1,4 +1,12 @@
+# Project Formatter
+# 
+# Author::  Adam Wagner (mailto:awagner83@gmail.com)
+# Author::  Kenneth Parnell
+
 require 'formatter/tokenized_string'
+
+# Formatter Grammar Class
+# Reads language grammar files and is used as a set of rules of tokenization
 
 class Grammar
     def initialize(grammar)
@@ -8,7 +16,12 @@ class Grammar
     end
     
     def valid?
-        @valid ||= load_grammar
+    	# ensure grammar is loaded
+    	load_grammar if @tokenizer.size.zero?
+		
+		@tokenizer.each() do |token|
+			return false if token.size.zero?
+		end
     end
 	
 	def has_rules?
@@ -16,12 +29,7 @@ class Grammar
 	end
     
     def load_grammar
-        File.open(@grammar_file, 'r') do |f|
-            f.each_line do |l|
-                t = l.split(/\s+/)
-                @tokenizer[t[0]] = t[1]
-            end
-        end
+    	@tokenizer = YAML.load_file( @grammar_file )
         @tokenizer.size
     end
     

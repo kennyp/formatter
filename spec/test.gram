@@ -1,29 +1,29 @@
----
-name: DoubleQuotes
-regex: [/"/, /(?<=[^\\])"/]
-rules:
-    - must_not be_in SingleQuotes
----
-name: SingleQuotes
-regex: [/'/, /(?<=[^\\])'/]
-rules:
-    - must_not be_in DoubleQuotes
----
-name: Whitespace
-regex: /\s+/
-rules:
-    - must_not be_in DoubleQuotes
-    - must_not be_in SingleQuotes
----
-name: Block
-regex: [/{/, /}/]
-rules:
-    - must_not be_in DoubleQuotes
-    - must_not be_in SingleQuotes
-    - must_not be_in Group
----
-name: Group
-regex: [/(/, /)/]
-rules:
-    - must_not be_in DoubleQuotes
-    - must_not be_in SingleQuotes
+DoubleQuotes:
+    regex: ['/"/', '/(?<=[^\\])"/']
+    rules:
+        - must_not be_in SingleQuotes
+        
+SingleQuotes:
+    regex: ["/'/", "/(?<=[^\\])'/"]
+    rules:
+        - must_not be_in DoubleQuotes
+        
+Whitespace:
+    regex: /\s+/
+    rules:
+        - must_not be_in DoubleQuotes
+        - must_not be_in SingleQuotes
+        
+Block:
+    regex: [/{/, /}/]
+    rules:
+        - must_not be_in DoubleQuotes
+        - must_not be_in SingleQuotes
+        - must_not be_in Group
+        
+Group:
+    regex: [/(/, /)/]
+    rules:
+        - must_not be_in DoubleQuotes
+        - must_not be_in SingleQuotes
+        
