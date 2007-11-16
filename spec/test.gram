@@ -26,4 +26,3 @@ Group:
     rules:
         - must_not be_in DoubleQuotes
         - must_not be_in SingleQuotes
-        
