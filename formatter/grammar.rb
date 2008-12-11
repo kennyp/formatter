@@ -1,7 +1,7 @@
 # Project Formatter
 # 
-# Author::  Adam Wagner (mailto:awagner83@gmail.com)
-# Author::  Kenneth Parnell
+# Author::  Adam Wagner <awagner83@gmail.com>
+# Author::  Kenneth Parnell <k.parnell@gmail.com>
 
 require 'formatter/tokenized_string'
 
